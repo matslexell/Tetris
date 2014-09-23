@@ -1,5 +1,5 @@
 MAIN_FILE = tetris.Tetris
-ARGS = 
+ARGS = verbose
 PACKAGE = */
 
 JFLAGS = -g
@@ -21,4 +21,9 @@ compile:
 	javac $(PACKAGE)*.java
 
 run:
+	$(RUN) $(MAIN_FILE)
+
+runconsole:
 	$(RUN) $(MAIN_FILE) $(ARGS)
+
+console: clean compile runconsole

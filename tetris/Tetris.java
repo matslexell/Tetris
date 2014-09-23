@@ -24,7 +24,7 @@ public class Tetris {
 	
 	//Standard size is (18, 10)
 	private int mtx[][] = new int[18][10];
-	private final boolean GUI = true;
+	private final boolean GUI;
 
 	private Semaphore sem = new Semaphore(1, true);
 	private Gui gui;
@@ -38,7 +38,8 @@ public class Tetris {
 	private boolean end = false;
 	private boolean pause = false;
 
-	public Tetris() {
+	public Tetris(boolean useGui) {
+		GUI = useGui;
 		
 		gui = new Gui("Tetris", mtx.length, mtx[0].length);
 		gui.setTetris(this);
@@ -238,7 +239,11 @@ public class Tetris {
 	}
 	
 	public static void main(String[] args) {
-		new Tetris();
+		boolean useGui = true;
+		if(args.length >= 1){
+		useGui = !args[0].equals("verbose");
+		}
+		new Tetris(useGui);
 	}
 
 
